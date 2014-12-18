@@ -57,11 +57,13 @@ public class FirstMenu extends BasicGameState{
 	
 	private static boolean[][] makeNewField(int fieldSize) {
 		boolean[][] newField = new boolean[fieldSize][fieldSize];
-		
+		Rectangal[][] rects = new Rectangal[fieldSize][fieldSize];
 		
 		for(int a = 0; a < newField.length; a++)
-			for(int b = 0; b < newField.length; b++)
-				newField[a][b] = true;
+			for(int b = 0; b < newField.length; b++){
+				rects[a][b] = new Rectangal();
+				newField[a][b] = rects[a][b].isLiving();
+			}
 		
 		return newField;
 	}
