@@ -9,9 +9,11 @@ import org.newdawn.slick.state.StateBasedGame;
 
 
 public class FirstMenu extends BasicGameState{
-	
-	public static boolean[][] field = makeNewField(100);           //this parameter is all you need to change to get a different field size. be careful with it, i don't know how it will react if the ints need to round. Or, how it will interact with pre-made fields.
+	public final static int user_parameter_for_field_size = 100;
+	static Rectangal[][] rects = new Rectangal[user_parameter_for_field_size][user_parameter_for_field_size];
+	public static boolean[][] field = makeNewField(user_parameter_for_field_size);           //this parameter is all you need to change to get a different field size. be careful with it, i don't know how it will react if the ints need to round. Or, how it will interact with pre-made fields.
 
+	
 	public FirstMenu(String title) {
 		super();
 	}
@@ -25,6 +27,9 @@ public class FirstMenu extends BasicGameState{
 			throws SlickException {//update game logic here
 		if(container.getInput().isKeyPressed(Input.KEY_ESCAPE)){
 			sbg.enterState(1);
+		}
+		if(container.getInput().isKeyPressed(Input.KEY_SPACE)){
+			Life.updateField();
 		}
 		
 	}
@@ -57,12 +62,11 @@ public class FirstMenu extends BasicGameState{
 	
 	private static boolean[][] makeNewField(int fieldSize) {
 		boolean[][] newField = new boolean[fieldSize][fieldSize];
-		Rectangal[][] rects = new Rectangal[fieldSize][fieldSize];
 		
 		for(int a = 0; a < newField.length; a++)
 			for(int b = 0; b < newField.length; b++){
 				rects[a][b] = new Rectangal();
-				newField[a][b] = rects[a][b].isLiving();
+				newField[a][b] = rects[a][b].isCurrentlyLiving();
 			}
 		
 		return newField;

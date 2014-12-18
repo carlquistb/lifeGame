@@ -1,17 +1,21 @@
 
 public class Rectangal {
-		boolean isLiving;
-	public Rectangal(){
+	
+		boolean isCurrentlyLiving;
+	
+		
+		
+		
+		public Rectangal(){
 		int rand =(int) Math.round(Math.random());
-		System.out.println(rand);
 		if(rand == 0)
-			isLiving = true;
+			isCurrentlyLiving = true;
 		else
-			isLiving = false;
+			isCurrentlyLiving = false;
 	}
 
-	public boolean isLiving() {
-		return isLiving;
+	public boolean isCurrentlyLiving() {
+		return isCurrentlyLiving;
 	}
 	
 	
