@@ -13,6 +13,7 @@ public class Default extends StateBasedGame{
 
 	public void initStatesList(GameContainer container) throws SlickException {
 		addState(new FirstMenu(""));//state 0
+		addState(new PauseMenu(""));//state 1
 
 	}
 	public static void main(String[] args) throws SlickException{
