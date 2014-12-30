@@ -79,14 +79,37 @@ public class FirstMenu extends BasicGameState{
 		return newField;
 	}
 	
-	public static void updateField() {
+	public static void randomTestUpdateField() {
 		for(int a = 0; a < field.length; a++)
 			for(int b = 0; b < field.length; b++){//just checking to see how this will work. If it will work.
 				rects[a][b].quickChange();
 				field[a][b] = rects[a][b].isCurrentlyLiving();
 			}
 		
+		public static void updateField() {
+			for(int a = 0; a < field.length; a++)
+				for(int b = 0; b < field.length; b++){
+					rects[a][b].setSurroundings(surroundings(a,b));//sees the surroundings variable for each rectangal in the array.
+					if(//decides whether or not the rectangal is living or not
+						(rects[a][b].surroundings == 2 && rects[a][b].isCurrentlyLiving())
+							|| 
+						(rects[a][b].surroundings == 3))
+								rects[a][b].setLife(true);
+				field[a][b] = rects[a][b].isCurrentlyLiving();//updates the field array with the new info.
+				}
 	}
+	public static int surroundings(int a, int b){
+		int counter = 0;
+		if(a > 1 && a < field.length-1 && b > 1 && b < field.length-1)//handles everything with six surrounding cells.
+			{
+				//for loop that iterates between the six surrounding cells.
+			}
+			else//switch statement to handle all others. for now, they will remain unchecked.
+			{}//it is probable that I don't even have to do this. I can just use the null returns from cells that don't exist as false for isLiving.
+		return counter;
+	}
+		
+	
 }
 	
 	

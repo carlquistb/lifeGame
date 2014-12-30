@@ -17,7 +17,7 @@ public class Default extends StateBasedGame{
 
 	}
 	public static void main(String[] args) throws SlickException{
-		AppGameContainer app = new AppGameContainer(new Default("working..."));
+		AppGameContainer app = new AppGameContainer(new Default("Life"));
 		app.setDisplayMode(rightEndOfScreen,bottomEndOfScreen,false);
 		app.setAlwaysRender(true);
 		app.start();

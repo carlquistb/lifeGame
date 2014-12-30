@@ -2,7 +2,7 @@
 public class Rectangal {
 	
 		boolean isCurrentlyLiving;
-	
+		int surroundings;
 		
 		//constructor for random living/non-living square.
 	public Rectangal(){
@@ -17,11 +17,20 @@ public class Rectangal {
 	public Rectangal(boolean living){
 		isCurrentlyLiving = living;
 	}
+	
+	public void setLife(boolean a){
+		isCurrentlyLiving=a;
+	}
 
 
 	public boolean isCurrentlyLiving() {
 		return isCurrentlyLiving;
 	}
+	
+	public void setSurroundings(int a){
+		surroundings = a;
+	}
+	
 	 public void quickChange(){
 		 int random =(int) Math.round(Math.random());
 			if(random == 0)
