@@ -19,7 +19,11 @@ public class Rectangal {
 	}
 	
 	public void setLife(boolean a){
-		isCurrentlyLiving=a;
+		isCurrentlyLiving = a;
+	}
+	
+	public void switchLife(){
+		isCurrentlyLiving = !isCurrentlyLiving;
 	}
 
 

@@ -5,7 +5,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class Default extends StateBasedGame{
 
-	public static final int rightEndOfScreen = 2000;
+	public static final int rightEndOfScreen = 1600;
 	public static final int bottomEndOfScreen = 1600;
 	public Default(String name) {
 		super(name);
