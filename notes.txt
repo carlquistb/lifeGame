@@ -5,9 +5,4 @@ any live cell with more than three neighbors will die from overcrowding.
 any live cell with two neighbors will stay alive for a generation.
 any dead cell with three neighbors exactly will come to life.
 
-<<<<<<< HEAD
-optional rule, not included in the original program.
-	any cell that has been alive for three generations will die. Of old age.
-=======
-
->>>>>>> origin/aattempt-to-make-rectangle-class-and-implement-it
+I believe I am back in the right branch and repository now. That was pretty wierd. Almost as wierd as the way that wierd is spelled.

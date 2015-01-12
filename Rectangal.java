@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 /*
  * Brendan Carlquist
@@ -59,6 +58,3 @@ public class Rectangal {
 	
 	
 }
-=======
-yep.
->>>>>>> 32879d7732c81a837356bb246b0ba51ee40b918a
