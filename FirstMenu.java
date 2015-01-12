@@ -1,3 +1,14 @@
+
+	/*
+	 * Brendan Carlquist
+	 * 
+	 * part of the game of life application.
+	 * 
+	 * handles almost all of the game mechanics. All the rendition, updates, and user input is processed here.
+	 */
+
+
+
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -5,21 +16,12 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
-@SuppressWarnings("unused")
-
-	/*
-	 * Brendan Carlquist
-	 * 
-	 * Rendition of John Conway's game of life.
-	 */
-
-
 
 public class FirstMenu extends BasicGameState{
 	
 	
 	//change this!!!
-	public final static int user_parameter_for_field_size = 100;
+	public final static int user_parameter_for_field_size = 90;
 	//change this!!!
 	
 	
@@ -27,6 +29,12 @@ public class FirstMenu extends BasicGameState{
 	static Rectangal[][] rects = new Rectangal[user_parameter_for_field_size][user_parameter_for_field_size]; 	//this is what will be changed
 	public static boolean[][] field = makeNewField(user_parameter_for_field_size);
 	
+	
+	
+	
+/*
+ * these are inherited classes from Slick2D.BasicGameState
+ */
 	public FirstMenu(String title) {
 		super();
 	}
@@ -40,17 +48,19 @@ public class FirstMenu extends BasicGameState{
 			throws SlickException {//update game logic here
 		Input input = container.getInput();
 		if(input.isKeyPressed(Input.KEY_ESCAPE)){
-			sbg.enterState(1);
+			sbg.enterState(0);
 		}
 		if(input.isKeyPressed(Input.KEY_SPACE)  ||  input.isKeyDown(Input.KEY_ENTER)){
 			updateField();
 		}
 		if(input.isMousePressed(Input.MOUSE_LEFT_BUTTON)){
 			changeClickedRectangal(input.getMouseX(),input.getMouseY());
-			
 		}
 		if(input.isKeyPressed(Input.KEY_B)){
 			blankField();
+		}
+		if(input.isKeyPressed(Input.KEY_N)){
+			newRandField();
 		}
 	}
 
@@ -65,11 +75,31 @@ public class FirstMenu extends BasicGameState{
 					g.fillRect(a*Default.rightEndOfScreen/field.length, b*Default.bottomEndOfScreen/field.length, Default.rightEndOfScreen/field.length-1, Default.bottomEndOfScreen/field.length-1);
 		
 	}
-
 	public int getID() {
-		return 0;
+		return 1;
 	}
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+/*
+ * these are methods that are called based on user input, other than updates to the field.
+ */
+	
+	
+	/*
+	 * As is stated, switches the state of the rectangal clicked by the left mouse button.
+	 */
 	private void changeClickedRectangal(int mouseX, int mouseY) {
 		int xcounter = -1;
 		int rightEdgeOfCurrentCell = 0;//
@@ -85,10 +115,10 @@ public class FirstMenu extends BasicGameState{
 		}while(mouseY>lowerEdgeOfCurrentCell);
 		rects[xcounter][ycounter].switchLife();
 		field[xcounter][ycounter] = !field[xcounter][ycounter];
-		//System.out.println("this cell should ");
-		
 		}
-	
+	/*
+	 * used by the b-button user input. Just sets the whole field to 'off.'
+	 */
 	public static void blankField(){
 		for(int i = 0; i < rects.length;i++)
 			for(int j = 0; j < rects[i].length;j++){
@@ -96,13 +126,26 @@ public class FirstMenu extends BasicGameState{
 				field[i][j] = false;
 			}
 	}
-	
-	public static void randomTestUpdateField() {
-		for(int a = 0; a < rects.length; a++)
-			for(int b = 0; b < rects.length; b++){//just checking to see how this will work. If it will work.
-				rects[a][b].quickChange();
-			}
+	/*
+	 * used by the n-button user input. Just remakes the field again, with new Rectangals.
+	 * Re-calls the constructor that makes random living cells.
+	 */
+	public static void newRandField(){
+		rects = new Rectangal[user_parameter_for_field_size][user_parameter_for_field_size];
+		field = makeNewField(user_parameter_for_field_size);
 	}
+	
+	
+	
+	
+	
+	
+	
+/*
+ * these are all methods that work together when the updateField() method is called.
+ */
+	
+	
 	/*
 	 * fairly self-explanitory. 
 	 */
@@ -114,7 +157,6 @@ public class FirstMenu extends BasicGameState{
 		for(int i = 0; i < rects.length; i++)
 			for(int j = 0; j < rects.length; j++)
 				determineState(i,j);
-
 	}
 	/*
 	 * uses the indexes to reference the rects[][] Rectangal objects for the surroundings variable.
@@ -130,10 +172,7 @@ public class FirstMenu extends BasicGameState{
 		else if(rects[a][b].surroundings == 3){
 			rects[a][b].setLife(true);
 		}
-		
 	}
-
-	
 	/*
 	 * returns an int of how many of the surrounding cells are currently alive.
 	 * used in updateField(), to change the variable in each Rectangal object.
@@ -159,7 +198,6 @@ public class FirstMenu extends BasicGameState{
 								counter++;
 						}//if the array index doesn't exist, counter doesn't increment.
 					catch(ArrayIndexOutOfBoundsException e){}
-					
 				}
 		return counter;
 	}
@@ -171,7 +209,21 @@ public class FirstMenu extends BasicGameState{
 	
 	
 	
+/*
+ * other methods.
+ */
 	
+	
+	/*
+	 * This is soley for the purpose of debugging.
+	 * quickly changes the value of the isCurrentlyLiving variable in each Rectangal in rects[][].
+	 */
+	public static void randomTestUpdateField() {
+		for(int a = 0; a < rects.length; a++)
+			for(int b = 0; b < rects.length; b++){
+				rects[a][b].quickChange();
+			}
+	}
 	/*
 	 * this is only referenced when creating the boolean[][] field.
 	 * makes the field based on the values that the random generator in Rectangal comes up with.
@@ -184,7 +236,6 @@ public class FirstMenu extends BasicGameState{
 				rects[a][b] = new Rectangal();
 				newField[a][b] = rects[a][b].isCurrentlyLiving();
 			}
-		
 		return newField;
 	}
 

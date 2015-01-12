@@ -1,4 +1,17 @@
 
+/*
+ * Brendan Carlquist
+ * 
+ * part of the game of life application.
+ * 
+ * 
+ * Rectangal class is purposefully spelled wrong! not to be confused with inbuilt classes like Graphics.Rectangle
+ * nothing all that hard to understand about this. 
+ * 
+ * the surroundings int stores how many of the surrounding rectangals are 'on.'
+ * Other than that, the class is self explanatory.
+ */
+
 public class Rectangal {
 	
 		boolean isCurrentlyLiving = true;
