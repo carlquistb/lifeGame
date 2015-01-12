@@ -4,4 +4,3 @@ public class Life {		//I guess I just don't even need this class anymore...
 
 
 	}
-}

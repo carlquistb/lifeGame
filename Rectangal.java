@@ -1,7 +1,7 @@
 
 public class Rectangal {
 	
-		boolean isCurrentlyLiving;
+		boolean isCurrentlyLiving = true;
 		int surroundings;
 		
 		//constructor for random living/non-living square.
