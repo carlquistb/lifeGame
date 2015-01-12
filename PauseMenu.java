@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
  * Brendan Carlquist
  * part of the game of life application.
@@ -55,3 +56,6 @@ public class PauseMenu extends BasicGameState{
 	}
 
 }
+=======
+yuperoo.
+>>>>>>> 32879d7732c81a837356bb246b0ba51ee40b918a
